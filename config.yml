@@ -1,0 +1,18 @@
+name: cs_movie_rec
+channels:
+  - defaults
+dependencies:
+  - python=3.10.11
+  - os
+  - json
+  - requests
+  - pandas
+  - numpy
+  - scikit-learn
+  - streamlit
+  - pip:
+    - pinecone-io
+    - openai
+    - tmdbv3api
+    - pickle5
+
