@@ -34,9 +34,23 @@ There are also functions that were created in one script that were imported into
 * Pinecone API
 * TMDB API
 
-If you want to use others for your stack, you will need to adjust the code yourself to account for that
+If you want to use others for your stack, you will need to adjust the code yourself to account for that. Also this was set up on Ubuntu 20.04, so the following commands should work for Unix/Mac - but Windows users that aren't using WSL may need to tweak the code to match Windows commands
 
-Please see the config file for more specific details
+For easy install and environment set-up, download the 'config.yaml' file and run the following command:
+conda env create -f config.yml
+
+This will automatically set up the conda environment for someone to be able to run it locally. Then use the following command from the terminal to activate the environment:
+conda activate cs_movie_rec
+
+cd into the directory where all the files are stored after downloading them:
+cd /path/to/folder/for/movie_rec_engine
+
+At this point you can run:
+streamlit run run.py
+
+
+They would still need to set up the API keys, but outside of that, as long as the files are in the same parent folder, everything should work!
+
 
 ## Limitations:
 
