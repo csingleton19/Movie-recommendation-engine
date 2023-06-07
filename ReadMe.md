@@ -37,9 +37,11 @@ There are also functions that were created in one script that were imported into
 If you want to use others for your stack, you will need to adjust the code yourself to account for that. Also this was set up on Ubuntu 20.04, so the following commands should work for Unix/Mac - but Windows users that aren't using WSL may need to tweak the code to match Windows commands
 
 For easy install and environment set-up, download the 'config.yaml' file and run the following command:
+
 conda env create -f config.yml
 
 This will automatically set up the conda environment for someone to be able to run it locally. Then use the following command from the terminal to activate the environment:
+
 conda activate cs_movie_rec
 
 cd into the directory where all the files are stored after downloading them:
