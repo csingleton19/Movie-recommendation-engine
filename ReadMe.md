@@ -61,7 +61,7 @@ They would still need to set up the API keys, but outside of that, as long as th
 
 ## Discussion:
 
-This was a really fun project to work on, it was outside of the scope of some things I usually work on - but definitely fun to learn! I tried following the Twelve-Factor App methodology as best as I could, but some parts were not applicable, i.e. concurrency: I could have set up API calls to work concurrently, however the rate limits and RAM issues prevented me from doing that. I had to scale it back and work in batches instead. There was no need for dev/prod parity as there is a single environment. On the other hand, logging is incorporated, the dependencies are explicitly declared by importing the required modules in the beginning, and logs are used. 
+This was a really fun project to work on, it was outside of the scope of some things I usually work on - but definitely fun to learn! I tried following the Twelve-Factor App methodology as best as I could, but some parts were not applicable, i.e. concurrency: I could have set up API calls to work concurrently, however the rate limits and RAM issues prevented me from doing that. I had to scale it back and work in batches instead. There was no need for dev/prod parity as there is a single environment. On the other hand, logging is incorporated, the dependencies are explicitly declared by importing the required modules in the beginning, and declarative statements are used. 
 
 ## Future Work:
 
