@@ -45,10 +45,17 @@ This will automatically set up the conda environment for someone to be able to r
 conda activate cs_movie_rec
 
 cd into the directory where all the files are stored after downloading them:
+
 cd /path/to/folder/for/movie_rec_engine
 
 At this point you can run:
+
 streamlit run run.py
+
+I also have it currently set up so that other people can connect from other machines as opposed to running it locally. To do this, you would just need to add the following line to the end of your streamlit command:
+
+--server.address 72.89.XX.XX:8501, where 72.89.XX.XX is the IP address of the machine that is currently running the program, and 8501 is the default port for connected where it runs on.
+
 
 
 They would still need to set up the API keys, but outside of that, as long as the files are in the same parent folder, everything should work!
