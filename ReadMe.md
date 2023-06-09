@@ -91,7 +91,7 @@ I will go through the scripts and explain what each one does, and if there is so
 
 #### data_collection.py
 
-1) The code you provided is a script to fetch movie data from The Movie Database (TMDB) API
+1) The script fetches movie data from The Movie Database (TMDB) API
 
 2) It retrieves the details of popular movies, their casts, and directors
 
@@ -137,7 +137,7 @@ I will go through the scripts and explain what each one does, and if there is so
 
 4) The find_similar_movies function takes a movie title, the movies DataFrame, the vectors DataFrame, the Pinecone index, and a number of similar movies to return. It checks if the given movie title exists in the DataFrame, and if it does, gets its vector representation and queries the Pinecone index for similar movies. The function returns the titles of the similar movies
 
-* I considered three main things for the recommendation enging: Cosine Similarity, Manhattan Distance, and Euclidean Distance. 
+* I considered three main things for the recommendation engine: Cosine Similarity, Manhattan Distance, and Euclidean Distance. 
     * Cosine Similarity: Like I mentioned earlier, this one is strong with dealing with sparse data - and using one-hot encoding ensured there is plenty of sparse data. In the context of a move recommendation system, it is only concerned about the angle between the two vectors, which means it cares more about common features and what those features have in common than the number of times something has been watched. One last strength it has is dealing with high dimensional data, and my dataframes were over a thousand columns x hundreds of rows
     * Euclidean Distance: This one is a distance metric that tends to work well in datasets with lower dimensionality. For two points (x1,y1) and (x2,y2), the Euclidean distance is sqrt((x2-x1)^2 + (y2-y1)^2). It's a straight-line distance between two points - so in two dimensions it is equivalent to the Pythagorean Theorum
     * Manhattan distance: I considered this one as well, but like Euclidean distance, this one is better suited for lower dimensionality. This one would be better suited for a recommendation system that cares about differences in ratings. The Manhattan Distance is the total sum of the difference between the x-coordinates and y-coordinates. For two points (x1,y1) and (x2,y2), the Manhattan distance is |x2-x1| + |y2-y1|. It's called the "Manhattan distance" because it's similar to the block-by-block path a taxi would have to drive in a city like Manhattan.
