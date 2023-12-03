@@ -11,7 +11,7 @@
 
 ## Purpose:
     
-The purpose of this project is to build a simple chatbot for people interested in getting movie recommendations, using The Movie Database (TMDB) as the data source. Using a range of their preferences, the user should be able to get movie recommendations base
+The purpose of this project is to build a simple chatbot for people interested in getting movie recommendations, using The Movie Database (TMDB) as the data source. Using a range of their preferences, the user should be able to get movie recommendations 
 
 ## Setup and Configuration:
 
