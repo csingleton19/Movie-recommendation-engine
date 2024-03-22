@@ -1,6 +1,5 @@
 from recommendation_engine import find_similar_movies
 from recommendation_engine import find_similar_movies_by_preferences
-
 import pandas as pd
 import openai
 import json
@@ -57,28 +56,6 @@ directors = set() if process_directors else None
 # Extract unique genres from the 'genre_ids' column
 genres = movies_df['genre_ids'].explode().unique().tolist()
 
-
-# # Check for genres
-# for genre in genres:
-#     if genre.lower() in user_message.lower():
-#         if genre not in user_preferences.get('genres', []):
-#             user_preferences['genres'].append(genre)
-    
-# # Check for directors
-# if process_directors:
-#     for director in directors:
-#         if director.lower() in user_message.lower():
-#             if director not in user_preferences.get('directors', []):
-#                 user_preferences['directors'].append(director)
-
-# # Check for actors
-# if process_actors:
-#     for actor in actors:
-#         if actor.lower() in user_message.lower():
-#             if actor not in user_preferences.get('actors', []):
-#                 user_preferences['actors'].append(actor)
-
-
 user_preferences = {
     'genres': [],  
     'directors': [],  
@@ -125,9 +102,6 @@ def update_user_preferences(user_message, user_preferences):
         for actor in actors:
             if actor.lower() in user_message.lower():
                 user_preferences.setdefault('actors', []).append(actor)
-    
-    # Rest of the function...
-
 
     # Check for vote average
     if 'vote average' in user_message.lower():
@@ -155,9 +129,6 @@ def update_user_preferences(user_message, user_preferences):
 
     return user_preferences
 
-
-
-import openai
 
 def handle_user_message(user_message):
     messages = []
