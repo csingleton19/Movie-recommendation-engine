@@ -9,27 +9,15 @@ import logging
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
-# Define the directory where your JSON files are located
-dir_path = os.path.dirname(os.path.realpath(__file__))
+# Load environment variables from .env file
+load_dotenv()
 
-# Define the name of the specific JSON file you're looking for
-api_json = 'api_key_list.json'
-
-# Create the full path to the JSON file
-json_filepath = os.path.join(dir_path, api_json)
-
-# Check if the file exists
-if os.path.exists(json_filepath):
-    # Load the JSON file 
-    with open(json_filepath) as f:
-        api_keys = json.load(f)
-        movie_api = api_keys.get('movies_api')
-        pinecone_api = api_keys.get('pinecone_api')
-        openai_api = api_keys.get('openai_api')
-        pinecone_env = api_keys.get('pinecone_env')
-    logging.info("Finished loading API keys!")
-else:
-    logging.info(f"The file {json_filepath} does not exist.")
+# Access environment variables
+openai_api = os.getenv("openai_api")
+pinecone_api = os.getenv("pinecone_api")
+pinecone_env = os.getenv("pinecone_env")
+pinecone_index = os.getenv("pinecone index")
+movie_api = os.getenv("tmdb_api")
 
 # Load the movies data from the JSON file
 with open('movies.json', 'r') as f:
@@ -79,7 +67,7 @@ vectors_df = vectors_df.astype(float)
 # Now let's create the vector database with Pinecone
 pinecone.init(api_key=pinecone_api, environment=pinecone_env)  # Initialize Pinecone with your API key
 
-index_name = "movie-vectors"  # Name of the Pinecone index
+index_name = "movie"  # Name of the Pinecone index
 
 # Delete the index if it already exists
 if index_name in pinecone.list_indexes():
@@ -97,12 +85,20 @@ pinecone.create_index(name=index_name, dimension=vectors.shape[1], metric="cosin
 # Create a Pinecone Index object
 index = pinecone.Index(index_name=index_name)
 
+# # Upsert the vectors into the index
+# batch_size = 100  # or adjust this value according to your conditions
+# for i in range(0, len(vectors), batch_size):
+#     chunk_ids = ids[i:i + batch_size]
+#     chunk_vectors = vectors[i:i + batch_size]
+#     index.upsert(vectors=zip(chunk_ids, chunk_vectors.tolist()))
+
 # Upsert the vectors into the index
 batch_size = 100  # or adjust this value according to your conditions
 for i in range(0, len(vectors), batch_size):
     chunk_ids = ids[i:i + batch_size]
     chunk_vectors = vectors[i:i + batch_size]
-    index.upsert(vectors=zip(chunk_ids, chunk_vectors.tolist()))
+    data_to_upsert = list(zip(chunk_ids, chunk_vectors.tolist()))
+    index.upsert(vectors=data_to_upsert, batch_size=batch_size)
 
 logging.info("Finished creating the vector database!")
 
