@@ -1,6 +1,6 @@
 
 import os
-import json
+from dotenv import load_dotenv
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer, LabelEncoder
 import pinecone
