@@ -1,5 +1,6 @@
 
 import os
+from dotenv import load_dotenv
 import json
 import pandas as pd
 from sklearn.preprocessing import MultiLabelBinarizer, LabelEncoder
@@ -84,13 +85,6 @@ pinecone.create_index(name=index_name, dimension=vectors.shape[1], metric="cosin
 
 # Create a Pinecone Index object
 index = pinecone.Index(index_name=index_name)
-
-# # Upsert the vectors into the index
-# batch_size = 100  # or adjust this value according to your conditions
-# for i in range(0, len(vectors), batch_size):
-#     chunk_ids = ids[i:i + batch_size]
-#     chunk_vectors = vectors[i:i + batch_size]
-#     index.upsert(vectors=zip(chunk_ids, chunk_vectors.tolist()))
 
 # Upsert the vectors into the index
 batch_size = 100  # or adjust this value according to your conditions
