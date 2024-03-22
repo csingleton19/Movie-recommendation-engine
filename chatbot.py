@@ -19,6 +19,7 @@ openai_api = os.getenv("openai_api")
 pinecone_api = os.getenv("pinecone_api")
 pinecone_env = os.getenv("pinecone_env")
 pinecone_index = os.getenv("pinecone index")
+movie_api = os.getenv("tmdb_api")
 
 
 # Initialize OpenAI API

@@ -10,31 +10,17 @@ import logging
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
+# Load environment variables from .env file
+load_dotenv()
 
-# Define the directory where your JSON files are located
-dir_path = os.path.dirname(os.path.realpath(__file__))
+# Access environment variables
+openai_api = os.getenv("openai_api")
+pinecone_api = os.getenv("pinecone_api")
+pinecone_env = os.getenv("pinecone_env")
+pinecone_index = os.getenv("pinecone index")
+movie_api = os.getenv("tmdb_api")
 
-# Define the name of the specific JSON file you're looking for
-api_json = 'api_key_list.json'
-
-# Create the full path to the JSON file
-json_filepath = os.path.join(dir_path, api_json)
-
-# Check if the file exists
-if os.path.exists(json_filepath):
-    # Load the JSON file 
-    with open(json_filepath) as f:
-        api_keys = json.load(f)
-        movie_api = api_keys.get('movies_api')
-        pinecone_api = api_keys.get('pinecone_api')
-        openai_api = api_keys.get('openai_api')
-        pinecone_env = api_keys.get('pinecone_env')
-        pinecone_index = api_keys.get('pinecone_index')
-    logging.info("Finished loading API keys!")
-else:
-    logging.info(f"The file {json_filepath} does not exist.")
-
-pinecone.init(api_key = pinecone_api, environment = "asia-southeast1-gcp-free")
+pinecone.init(api_key = pinecone_api, environment = pinecone_env)
 index = pinecone.Index(index_name = pinecone_index)
 
 # # Add this line to list all available indexes
@@ -42,8 +28,6 @@ index = pinecone.Index(index_name = pinecone_index)
 
 # # Or add this line to describe your specific index
 # logging.info(index.describe_index_stats())
-
-
 
 movies_df = pd.read_pickle("movies_df.pkl")
 movies_encoded_df = pd.read_pickle("movies_encoded_df.pkl")

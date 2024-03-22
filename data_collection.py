@@ -7,29 +7,15 @@ import logging
 # Set up logging
 logging.basicConfig(filename='app.log', level=logging.INFO)
 
+# Load environment variables from .env file
+load_dotenv()
 
-# Define the directory where your JSON files are located
-dir_path = os.path.dirname(os.path.realpath(__file__))
-
-# Define the name of the specific JSON file you're looking for
-api_json = 'api_key_list.json'
-
-# Create the full path to the JSON file
-json_filepath = os.path.join(dir_path, api_json)
-
-# Check if the file exists
-if os.path.exists(json_filepath):
-    # Load the JSON file 
-    with open(json_filepath) as f:
-        api_keys = json.load(f)
-        movie_api = api_keys.get('movies_api')
-        pinecone_api = api_keys.get('pinecone_api')
-        openai_api = api_keys.get('openai_api')
-    logging.info("Finished loading API keys!")
-else:
-    logging.info(f"The file {json_filepath} does not exist.")
-
-
+# Access environment variables
+openai_api = os.getenv("openai_api")
+pinecone_api = os.getenv("pinecone_api")
+pinecone_env = os.getenv("pinecone_env")
+pinecone_index = os.getenv("pinecone index")
+movie_api = os.getenv("tmdb_api")
 
 # Number of pages to fetch from the API
 num_pages = 10  # Reduce this while testing
